@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Life explorer</h1>
+  <p class="sub">Click or drag on the grid to draw. Press Play to watch the rules run.</p>
+
+  <canvas id="grid" width="800" height="500" aria-label="Cell grid"></canvas>
+  <p id="status" role="status"></p>
+
+  <div class="bar">
+    <button id="play">Play</button>
+    <button id="step">Step</button>
+    <button id="clear">Clear</button>
+    <button id="random">Random fill</button>
+    <label>Density <output id="o-dens">25%</output><input id="dens" type="range" min="5" max="60" value="25"></label>
+    <label>Speed <output id="o-speed">15/s</output><input id="speed" type="range" min="1" max="60" value="15"></label>
+  </div>
+
+  <div class="bar">
+    <label>Pattern <select id="patSel"><option value="">Load a pattern…</option></select></label>
+    <label>Rule <select id="ruleSel"></select></label>
+    <label>Custom <input id="ruleText" value="B3/S23" size="14" spellcheck="false" aria-describedby="ruleHelp"></label>
+    <label class="check"><input type="checkbox" id="wrap" checked> Wrap edges</label>
+  </div>
+  <p class="note" id="ruleHelp">Rules use B/S notation: B lists the neighbour counts that give birth, S the counts that survive. B3/S23 is Conway's Life.</p>
+
+  <section class="stats">
+    <div><b id="c-gen">0</b><span>generation</span></div>
+    <div><b id="c-pop">0</b><span>live cells</span></div>
+    <div><b id="c-den">0%</b><span>of grid</span></div>
+    <div><b id="c-peak">0</b><span>peak population</span></div>
+  </section>
+
+  <canvas id="chart" width="800" height="150" aria-label="Population over time"></canvas>
+  <p class="note">Population over the last 400 generations.</p>
+</main>
+<script src="life.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
